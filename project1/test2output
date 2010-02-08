@@ -1,0 +1,45 @@
+1. Input Text
+2. Text Stats
+3. Find Substring
+4. Reverse Text
+5. Quit
+
+
+
+===============Input Option:
+
+
+===============Input Option:Character Number: 66
+Word Number: 9
+Sentence Number: 3
+Most Frequent Characters:
+' ':13
+'a':12
+'.':6
+
+
+
+===============Input Option:Please Input Substring
+found 6 occurrence(s)
+
+
+
+===============Input Option:Reversed Text:
+system.out.println()! 	5.4,2 deaaa?      abab ... e ccc babaa aaaa
+
+
+
+===============Input Option:Reversed Text:
+aaaa babaa ccc e ... abab      deaaa? 5.4,2	 system.out.println()!
+
+
+
+===============Input Option:
+
+
+===============Input Option:Please Input Substring
+found 0 occurrence(s)
+
+
+
+===============Input Option:

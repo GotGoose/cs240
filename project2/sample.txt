@@ -1,0 +1,12 @@
+Tom Green,(765)496-1234,200 State Street,West Lafayette,IN,47906,tom@purdue.edu
+Scott thielman,(320)845-2171,100 Vadnais Boulevard,Albany,MN,56307,sthielman@mail.albany.k12.mn.us
+rachel Kim,(765)409-2334,212 Nimitz Drive,West Lafayette,IN,47906,rkim@purdue.edu
+Roger Giroux,(763)506-1003,11299 Hanson Blvd NW,Wright,MN,55433,roger.giroux@anoka.k12.mn.us
+Timothy Goodwin,(507)874-2747,465 Northwestern Ave,Buffalo,NY,00501,tgoodwin@columbia.edu
+Brody Curtis,(765)496-2636,1285 Electrical Engineering,West Lafayette,IN,47907,brodyc@purdue.edu
+Tom King,(765)403-8876,Greenbush St,Lafayette,IN,47908,tomk@gmail.com
+John Lee,(465)893-6684,23 Union St,Blackburg,VA,24073,lee32@vtech.edu
+Bob White,(243)978-2033,,,,,bob_white@gmail.com
+Jerry Callan,,,,PA,30894,jerry@yahoo.com
+
+

@@ -1,0 +1,570 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="zh-cn">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>CS240 Project 1</title>
+</head>
+
+<body>
+
+<h1 align="center">CS240 Project 1</h1>
+<h1 align="center">Simple Text Analyzer</h1>
+<p align="left"><b><font color="#FF0000">Due Date: Monday 02/01/2010 11:59PM</font></b></p>
+<p align="center">  </p>
+<h2>Overview:</h2>
+<p>In this project, we'd like you to implement a small application which can do 
+simple analysis and operations over a given text.</p>
+<p>  </p>
+<h2>Task:</h2>
+<p>After your program is executed, a menu should be prompted, which indicates 
+the operations that can be done by the analyzer:</p>
+<p><b><font color="#008000">1. Input Text<br>
+2. Text Stats<br>
+3. Find Substring<br>
+4. Reverse Text<br>
+5. Quit</font></b></p>
+<p>User can enter '1'-'5' followed by a new line character. Other input should be 
+considered as invalid and your program should output &quot;Invalid Input&quot;. (eg. 6, 
+10, a,...)</p>
+<p><b>Input Text</b></p>
+<p>User can input text no more than 1000 characters. After the new text is 
+entered, it overwrites the old one. The default text should be an empty string. 
+Notice that the text doesn't include the last new line character. If the user 
+enters more than 1000 characters, print out the warning message and let the user 
+enter again.</p>
+<p>  </p>
+<p><b>Text Stats</b></p>
+<p>The program outputs the statistical information about the text entered.</p>
+<p>The information includes:</p>
+<p><b><i>Character Number: </i></b>The length of the text.</p>
+<p><b><i>Word Number:</i></b> The number of words in the text. In this case, a 
+word only consists of alphabet (a-z,A-Z). So the string &quot;<b><font color="#008000">it's</font></b>&quot; 
+has two words (&quot;it&quot; and &quot;s&quot;), &quot;<b><font color="#008000">4.5</font></b>&quot; contains 
+0 word.</p>
+<p><b><i>Sentence Number:</i></b> The number of sentences in the text. The 
+sentence is defined by '.' or '!' or '?' followed by ' ' or '\0' or ''' or '&quot;'. 
+So the string &quot;hello world&quot; contains 0 sentence while &quot;hello. World!&quot; contains 2 
+sentences.</p>
+<p><b><i>Most Frequent Characters: </i></b>Three most frequent characters in the 
+text. The program should output the characters and their frequencies in 
+descending order. However, sometimes the number of output characters will be 
+less than 3 or more than 3. For the string &quot;<b><font color="#008000">aaaabb</font></b>&quot;, 
+there're only 2 different characters. In this case, just output 'a':4&nbsp; 
+'b':2.&nbsp; For the string &quot;<b><font color="#008000">ffffddccabb</font></b>&quot;, 
+all 'b' 'c' 'd' have the same frequency of 2. In this case, output 'f':4&nbsp; 
+'b':2&nbsp; 'c':2&nbsp; 'd':2. If characters have the same frequency, output 
+them in ascending order by ASCII value.</p>
+<p>  </p>
+<p><b>Find Substring</b></p>
+<p>After user selects this option, he will input a substring no more than 1000 
+characters. Then program outputs the times the substring occurs in the original 
+text. For example, if the text is &quot;<b><font color="#008000">howdoyoudo?</font></b>&quot; 
+and the substring is &quot;<b><font color="#008000">do</font></b>&quot;, there're 2 
+occurrences. Overlapping should be taken into account. For example, if the text 
+is &quot;<b><font color="#008000">aaaabbaa</font></b>&quot; and the substring is &quot;<b><font color="#008000">aa</font></b>&quot;, 
+the occurrence time should be 4 instead of 3.</p>
+<p>  </p>
+<p><b>Reverse Text</b></p>
+<p>Reverse the word in the text. In this case, a word is regarded as continuous 
+characters without ' ' and '\t' in it. So &quot;<b><font color="#008000">it's</font></b>&quot; 
+is one word, &quot;<b><font color="#008000">http:www.purdue.edu</font></b>&quot; is also 
+one word. If the original text is &quot;<b><font color="#008000">&nbsp;&nbsp; i'm 
+here, mom</font></b>&quot;, the resulting text should be &quot;<b><font color="#008000">mom 
+here, i'm&nbsp;&nbsp;&nbsp; </font></b>&quot;.</p>
+<p>  </p>
+<h2>Test Cases:</h2>
+<p><i>(The black is the user input and the blue is the program output)</i></p>
+<p><i>(Please don't copy the input from the web page directly because html can't 
+display some special characters. Instead, download the input files and use 
+redirection.)</i></p>
+<p><b><font size="4">1.</font></b></p>
+<p>$ proj1.out</p>
+<p><br>
+<b><font color="#0000FF">1. Input Text<br>
+2. Text Stats<br>
+3. Find Substring<br>
+4. Reverse Text<br>
+5. Quit</font></b><br>
+<br>
+<br>
+<br>
+<b><font color="#0000FF">===============Input Option:</font>1</b><br>
+<b>Comprising over 70% of the Earth's surface, water is undoubtedly the most 
+precious natural resource that exists on our planet.&nbsp; Without the seemingly 
+invaluable compound comprised of hydrogen and oxygen, life on Earth would be 
+non-existent: it is essential for everything on our planet to grow and prosper.&nbsp; 
+Although we as humans recognize this fact, we disregard it by polluting our 
+rivers, lakes, and oceans. Subsequently, we are slowly but surely harming our 
+planet to the point where organisms are dying at a very alarming rate.</b><br>
+<br>
+<br>
+<br>
+<b><font color="#0000FF">===============Input Option:</font>2</b><br>
+<b><font color="#0000FF">Character Number: 532<br>
+Word Number: 87<br>
+Sentence Number: 4<br>
+Most Frequent Characters:<br>
+' ':87<br>
+'e':48<br>
+'o':35<br>
+'r':35<br>
+'t':35</font></b><br>
+<br>
+<br>
+<br>
+<b><font color="#0000FF">===============Input Option:</font>3</b><br>
+<b><font color="#0000FF">Please Input Substring<br>
+</font>the<font color="#0000FF"><br>
+found 4 occurrence(s)</font></b><br>
+<br>
+<br>
+<br>
+<b><font color="#0000FF">===============Input Option:</font>4</b><br>
+<font color="#0000FF"><b>Reversed Text:<br>
+rate. alarming very a at dying are</b></font> <font color="#0000FF"><b>organisms 
+where point the to planet our harming surely but slowly are we Subsequently, 
+oceans. and lakes, rivers, our polluting by it disregard we fact, this recognize 
+humans as we Although prosper. and grow to planet our on everything for 
+essential is it non-existent: be would Earth on life oxygen, and hydrogen of 
+comprised compound invaluable seemingly the Without planet. our on exists that 
+resource natural precious most the undoubtedly is water surface, Earth's the of 
+70% over Comprising</b></font><br>
+<br>
+<br>
+<br>
+<b><font color="#0000FF">===============Input Option:</font>5</b></p>
+<p>  </p>
+<p>  </p>
+<p><b><font size="4">2.</font></b></p>
+<p>$ proj1.out</p>
+<p><b><font color="#0000FF"><br>
+1. Input Text<br>
+2. Text Stats<br>
+3. Find Substring<br>
+4. Reverse Text<br>
+5. Quit</font></b><br>
+<br>
+<br>
+<br>
+<b><font color="#0000FF">===============Input Option:</font>1</b><br>
+<b>aaaa babaa ccc e ... abab&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; deaaa? 5.4,2&nbsp; 
+system.out.println()!</b><br>
+<br>
+<br>
+<br>
+<b><font color="#0000FF">===============Input Option:</font>2</b><br>
+<b><font color="#0000FF">Character Number: 66<br>
+Word Number: 9<br>
+Sentence Number: 3<br>
+Most Frequent Characters:<br>
+' ':13<br>
+'a':12<br>
+'.':6</font></b><br>
+<br>
+<br>
+<br>
+<b><font color="#0000FF">===============Input Option:</font>3</b><br>
+<b><font color="#0000FF">Please Input Substring<br>
+</font>aa<font color="#0000FF"><br>
+found 6 occurrence(s)</font></b><br>
+<br>
+<br>
+<br>
+<b><font color="#0000FF">===============Input Option:</font>4</b><br>
+<b><font color="#0000FF">Reversed Text:<br>
+system.out.println()! 5.4,2 deaaa? abab ... e ccc babaa aaaa</font></b><br>
+<br>
+<br>
+<br>
+<b><font color="#0000FF">===============Input Option:</font>4</b><br>
+<b><font color="#0000FF">Reversed Text:<br>
+aaaa babaa ccc e ... abab deaaa? 5.4,2 system.out.println()!</font></b><br>
+<br>
+<br>
+<br>
+<b><font color="#0000FF">===============Input Option:</font>1</b><br>
+<b>hello world</b><br>
+<br>
+<br>
+<br>
+<b><font color="#0000FF">===============Input Option:</font>3</b><br>
+<b><font color="#0000FF">Please Input Substring</font></b><br>
+<b>hello world!</b><br>
+<b><font color="#0000FF">found 0 occurrence(s)</font></b><br>
+<br>
+<br>
+<br>
+<b><font color="#0000FF">===============Input Option:</font>45</b></p>
+<p><b><font color="#0000FF">Invalid Input</font></b><br>
+<br>
+<br>
+<br>
+<b><font color="#0000FF">===============Input Option:</font>5</b></p>
+<p>  </p>
+<p>  </p>
+<p><b><font size="4">3.</font></b></p>
+<p>$ proj1.out</p>
+<p><font color="#0000FF"><b>1. Input Text<br>
+2. Text Stats<br>
+3. Find Substring<br>
+4. Reverse Text<br>
+5. Quit</b></font><br>
+<br>
+<br>
+<br>
+<font color="#0000FF"><b>===============Input Option:</b></font><b>1</b><br>
+<b>&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot; 
+&quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;&lt;!-- Consume Server: 
+sfs-consume-4 --&gt;&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;&nbsp; &lt;head&gt;</b><br>
+<br>
+<br>
+<br>
+<font color="#0000FF"><b>===============Input Option:</b></font><b>2</b><br>
+<font color="#0000FF"><b>Character Number: 210<br>
+Word Number: 31<br>
+Sentence Number: 0<br>
+Most Frequent Characters:<br>
+'/':16<br>
+' ':14<br>
+'t':13</b></font><br>
+<br>
+<br>
+<br>
+<font color="#0000FF"><b>===============Input Option:</b></font><b>3</b><br>
+<font color="#0000FF"><b>Please Input Substring<br>
+</font>htm<font color="#0000FF"><br>
+found 5 occurrence(s)</font></b><br>
+<br>
+<br>
+<br>
+<b><font color="#0000FF">===============Input Option:</font>4</b><br>
+<b><font color="#0000FF">Reversed Text:<br>
+&lt;head&gt; xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt; --&gt;&lt;html sfs-consume-4 Server: 
+Consume &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;&lt;!-- 
+Transitional//EN&quot; 1.0 XHTML &quot;-//W3C//DTD PUBLIC html &lt;!DOCTYPE</font></b><br>
+<br>
+<br>
+<br>
+<b><font color="#0000FF">===============Input Option:</font>5</b></p>
+<p>  </p>
+<p><b><font size="4">4.</font></b></p>
+<p>$ proj1.out</p>
+<p><font color="#0000FF"><b>1. Input Text<br>
+2. Text Stats<br>
+3. Find Substring<br>
+4. Reverse Text<br>
+5. Quit</b></font><br>
+<br>
+<br>
+<br>
+<font color="#0000FF"><b>===============Input Option:</b></font><b>1</b><br>
+<b>Nothing matters It’s all gone I’m empty and she doesn’t care It doesn’t 
+matter How I feel or what I say She’s far away And wouldn’t stay No matter what 
+I say It wouldn’t matter anyway I used to wait for the day Just to hear her say 
+I miss you Guess I was the biggest fool Didn’t want to think you were cruel I’m 
+alone now and broken Left without even one token Of love or caring It all died 
+on my birthday How could I be so daring?</b><br>
+<br>
+<br>
+<br>
+<font color="#0000FF"><b>===============Input Option:</b></font><b>2</b><br>
+<font color="#0000FF"><b>Character Number: 440<br>
+Word Number: 99<br>
+Sentence Number: 1<br>
+Most Frequent Characters:<br>
+' ':89<br>
+'t':37<br>
+'e':33</b></font><br>
+<br>
+<br>
+<br>
+<font color="#0000FF"><b>===============Input Option:</b></font><b>3</b><br>
+<font color="#0000FF"><b>Please Input Substring<br>
+</font>How<font color="#0000FF"><br>
+found 2 occurrence(s)</font></b><br>
+<br>
+<br>
+<br>
+<font color="#0000FF"><b>===============Input Option:</b></font><b>4</b><br>
+<font color="#0000FF"><b>Reversed Text:<br>
+daring? so be I could How birthday my on died all It caring or love Of token one 
+even without Left broken and now alone I’m cruel were you think to want Didn’t 
+fool biggest the was I Guess you miss I say her hear to Just day the for wait to 
+used I anyway matter wouldn’t It say I what matter No stay wouldn’t And away far 
+She’s say I what or feel I How matter doesn’t It care doesn’t she and empty I’m 
+gone all It’s matters Nothing</b></font><br>
+<br>
+<br>
+<br>
+<font color="#0000FF"><b>===============Input Option:</b></font><b>1</b><br>
+<font color="#0000FF"><b>Thought you would understand Why I was so upset</b></font><br>
+<br>
+<br>
+<br>
+<font color="#0000FF"><b>===============Input Option:</b></font><b>3</b><br>
+<b><font color="#0000FF">Please Input Substring<br>
+</font>Thought you would understand Why I was so upset<font color="#0000FF"><br>
+found 1 occurrence(s)</font></b><br>
+<br>
+<br>
+<br>
+<font color="#0000FF"><b>===============Input Option:</b></font><b>5</b></p>
+<p>  </p>
+<p><b><font size="4">5.</font></b></p>
+<p>$ proj1.out</p>
+<p><font color="#0000FF"><b><br>
+1. Input Text<br>
+2. Text Stats<br>
+3. Find Substring<br>
+4. Reverse Text<br>
+5. Quit</b></font><br>
+<br>
+<br>
+<br>
+<font color="#0000FF"><b>===============Input Option:</b></font><b>1</b><br>
+<b>I smiled and shook my head. &quot;I can quite understand your thinking so,&quot; I 
+said. &quot;Of course, in your position of unofficial adviser and helper to everybody 
+who is absolutely puzzled, throughout three continents, you are brought in 
+contact with all that is strange and bizarre. But here&quot;-I picked up the morning 
+paper from the&nbsp;&nbsp;&nbsp;&nbsp; ground-&quot;let us put it to a practical 
+test. Here is the first heading&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; upon 
+which I come. 'A husband's cruelty to his wife.' There is half&nbsp;&nbsp;&nbsp; 
+a column of print, but I know without reading it that it is all perfectly&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+familiar to me. There is, of course, the other woman, the drink, the push, the 
+blow, the bruise, the sympathetic sister or landlady. The crudest of writers 
+could invent nothing more crude.&quot;</b><br>
+<br>
+<br>
+<br>
+<font color="#0000FF"><b>===============Input Option:</b></font><b>2</b><br>
+<font color="#0000FF"><b>Character Number: 745<br>
+Word Number: 131<br>
+Sentence Number: 9<br>
+Most Frequent Characters:<br>
+' ':148<br>
+'e':58<br>
+'t':56</b></font><br>
+<br>
+<br>
+<br>
+<font color="#0000FF"><b>===============Input Option:</b></font><b>3</b><br>
+<b><font color="#0000FF">Please Input Substring<br>
+</font>it<font color="#0000FF"><br>
+found 8 occurrence(s)</font></b><br>
+<br>
+<br>
+<br>
+<font color="#0000FF"><b>===============Input Option:</b></font><b>4</b><br>
+<font color="#0000FF"><b>Reversed Text:<br>
+crude.&quot; more nothing invent could writers of crudest The landlady. or sister 
+sympathetic the bruise, the blow, the push, the drink, the woman, other the 
+course, of is, There me. to familiar perfectly all is it that it reading without 
+know I but print, of column a half is There wife.' his to cruelty husband's 'A 
+come. I which upon heading first the is Here test. practical a to it put us 
+ground-&quot;let the from paper morning the up picked here&quot;-I But bizarre. and 
+strange is that all with contact in brought are you continents, three throughout 
+puzzled, absolutely is who everybody to helper and adviser unofficial of 
+position your in course, &quot;Of said. I so,&quot; thinking your understand quite can &quot;I 
+head. my shook and smiled I</b></font><br>
+<br>
+<br>
+  </p>
+<p><b>
+<font color="#0000FF">===============Input Option:</font>1<br>
+The Big Bang is the leading theory that almost all astrophysicists believe 
+explains the origin of the universe. This is because all observations so far 
+made support the Big Bang theory; there are four main lines of evidence that are 
+most-often used. The first was discussed above: The expansion of the universe. 
+The universe is expanding now, so in the past it must have been smaller. If it 
+were smaller in the past, then there probably was a time when it was 
+infinitesimally small. One could ask why don't we think that it might be 
+expanding now but it could have been shrinking before and we just don't know 
+about it. The answer is that there is simply no mechanism that we know about 
+that could accomplish this transition on a universal scale. The second line of 
+evidence is the Cosmic Microwave Background Radiation (CMB) that was discovered 
+in 1965 by Arno Penzias and Robert Wilson from Bell Labs. They were working with 
+a microwave receiver used to communicate with the Telstar satellite, but were 
+getting noise from every direction they pointed the receiver. It was coming from 
+all over the sky at what seemed to be exactly the same frequency. This was the 
+first evidence for the CMB, and they later shared a Nobel Prize for this 
+discovery. The CMB is an &quot;echo&quot; left over from when the universe was 
+approximately 300,000 years old, as predicted by the Big Bang model. As 
+something becomes compressed, as matter was when the universe was young, it 
+becomes hot. The actual &quot;heat&quot; comes from particles' movements - the faster they 
+move, the more energetic they are, and so the more heat we see. The universe was 
+so hot before it was 300,000 years old that atoms could not form. Because of 
+this, photons - particles of light - could not move around, for they kept 
+reacting with electrons - the negatively charged parts of atoms. Therefore, 
+during this period, the universe was effectively opaque. Once the universe had 
+reached 300,000 years old, atoms could form, and electrons were now bound to a 
+nucleus. Once this happened, photons could move about freely. This &quot;first light&quot; 
+is the CMB, and its existence is a very strong indication that the Big Bang 
+occurred. The third major pillar of the Big Bang theory lies in the abundance of 
+the different elements of the universe. The theory predicts that certain amounts 
+of hydrogen (~72%), helium (~28%), and other elements should be made. 
+Observations have shown almost exactly the amounts that are predicted. The 
+fourth piece is that the Big Bang theory is the only one that comprehensively 
+lays down a framework for the eventual evolution of the universe as we observe 
+it today. </b></p>
+<p><font color="#0000FF"><b>Text no more than 1000 characters. Please enter 
+again.</b></font></p>
+<p><b>The Big Bang is the leading theory that almost all astrophysicists believe 
+explains the origin of the universe. This is because all observations so far 
+made support the Big Bang theory; there are four main lines of evidence that are 
+most-often used. The first was discussed above: The expansion of the universe. 
+The universe is expanding now, so in the past it must have been smaller. If it 
+were smaller in the past, then there probably was a time when it was 
+infinitesimally small. One could ask why don't we think that it might be 
+expanding now but it could have been shrinking before and we just don't know 
+about it. The answer is that there is simply no mechanism that we know about 
+that could accomplish this transition on a universal scale. The second line of 
+evidence is the Cosmic Microwave Background Radiation (CMB) that was discovered 
+in 1965 by Arno Penzias and Robert Wilson from Bell Labs. They were working with 
+a microwave receiver used to communicate with the Telstar satellite, but </b></p>
+<p><b>
+<font color="#0000FF">===============Input Option:</font>3<font color="#0000FF"><br>
+Please Input Substring<br>
+</font>Big Bang<font color="#0000FF"><br>
+found 2 occurrence(s)</font></b></p>
+<p>
+<br>
+<font color="#0000FF"><b>===============Input Option:</b></font><b>5</b></p>
+<p>  </p>
+<p>Here are the <a href="test.zip">input</a> files and standard
+<a href="output.zip">output</a> files. Use input/output redirection to test your 
+program.</p>
+<p>Passing all the test cases above doesn't imply your program is 100% correct 
+so that you should get full mark. Different test cases will be used for grading. 
+You can also design your own test cases.</p>
+<p>  </p>
+<h2>Hint</h2>
+<p>1. To find substrings, you can use the library function &quot;strncmp()&quot;. Check 
+the manual for detail.</p>
+<p>2. To reverse the text in word, you can first reverse the whole string in 
+characters, then reverse each word in characters.</p>
+<p>  </p>
+<h2>Grading Breakdown</h2>
+<table border="1" width="41%" id="table2" cellpadding="5">
+	<tr>
+		<td width="395">Makefile</td>
+		<td>5</td>
+	</tr>
+	<tr>
+		<td width="395">Menu Prompt</td>
+		<td>1</td>
+	</tr>
+	<tr>
+		<td width="395">Clean exit</td>
+		<td>1</td>
+	</tr>
+	<tr>
+		<td width="395">Invalid Input Handling</td>
+		<td>3</td>
+	</tr>
+	<tr>
+		<td width="395">10 Test Cases (9 for each)<p>&nbsp; -Text Stat 5</p>
+		<p>&nbsp; -Substring 1</p>
+		<p>&nbsp; -Reverse Text 3</p>
+		<p>  </td>
+		<td>90</td>
+	</tr>
+</table>
+<p>Every test case includes several serial operations. If one operation causes 
+your program crash, you lose all the points for the subsequent operations.</p>
+<h2>Turnin</h2>
+<p>When you are satisfied that your program works correctly, please do the 
+following. </p>
+<span style="FONT-SIZE: 12pt">
+<p>  </p>
+</span>
+<ol type="1">
+	<li>Create a directory named project1 
+	<div class="p">
+		<!----></div>
+	</li>
+	<li>Copy all program files (*.c and *.h), your Makefile, and any 
+	documentations of your program to the directory created in step 1. 
+	<div class="p">
+		<!----></div>
+	</li>
+	<li>Go to the parent directory of project1 and type the following command 
+	into the terminal: 
+	<blockquote>
+		turnin -c cs240=XXXX -p project1 project1 
+	</blockquote>
+	<div class="p">
+		<!----></div>
+	where XXXX represents your lab section number (number only!). 
+	<div class="p">
+		<!----></div>
+	The turnin section should be as follows: 
+	<div class="p">
+		<!----></div>
+	<table id="table1" border="1">
+		<tr>
+			<td>Section </td>
+			<td>Time </td>
+			<td>TA </td>
+		</tr>
+		<tr>
+			<td>0101 </td>
+			<td>T 15:30-17:20 </td>
+			<td>Youhan</td>
+		</tr>
+		<tr>
+			<td>0201 </td>
+			<td>Th 15:30-17:20 </td>
+			<td>Youhan</td>
+		</tr>
+		<tr>
+			<td>0301 </td>
+			<td>F 15:30-17:20 </td>
+			<td>Suli</td>
+		</tr>
+	</table>
+	<div class="p">
+		<!----></div>
+	Make sure turnin reports that your project was submitted for grading. 
+	<div class="p">
+		<!----></div>
+	</li>
+	<li>You can check the files you have submitted by running the following 
+	command: 
+
+	<blockquote>
+		turnin -c cs240=XXXX -v -p project1 
+	</blockquote>
+	where XXXX represents your lab section number (number only!). 
+<!----></li>
+</ol>
+
+<p>  </p>
+<h2>Q&amp;A</h2>
+<p><b>TA Office Hour:</b></p>
+<center>
+<h2><font size="4">Located in HAAS G40</font></h2>
+</center>
+<table border="1" width="90%" id="table3">
+	<tr>
+		<td width="25%" align="middle">  </td>
+		<td width="25%" align="middle">Thursday</td>
+		<td width="25%" align="middle">Friday</td>
+	</tr>
+	<tr>
+		<td align="middle">6:00 pm - <br>
+		8:00 pm</td>
+		<td align="middle"><a href="mailto:danzhang2008@gmail.com">Dan Zhang</a><br>
+  </td>
+		<td align="middle"><a href="mailto:yfang@purdue.edu">Youhan Fang</a>
+		<p><a href="mailto:xi@purdue.edu">Suli Xi</a><br>
+  </td>
+	</tr>
+</table>
+<p>  </p>
+<p>The project is designed and will be graded by Suli Xi. Email me if you have 
+any questions about the specification or the grading.</p>
+
+</body>
+
+</html>

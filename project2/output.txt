@@ -1,0 +1,133 @@
+~localhost > AddrBook < address.txt
+Please input the initial data set:      <-- program output
+Tom Green,(765)496-1234,200 State Street,West Lafayette,IN,47906,tom@purdue.edu                      <-- user input
+scott thielman,(320)845-2171,100 Vadnais Boulevard,Albany,MN,56307,sthielman@mail.albany.k12.mn.us   <-- user input
+rachel Kim,(765)409-2334,212 Nimitz Drive,West Lafayette,IN,47906,rkim@purdue.edu                    <-- user input
+Roger Giroux,(763)506-1003,11299 Hanson Blvd NW,Wright,MN,55433,roger.giroux@anoka.k12.mn.us         <-- user input
+Timothy Goodwin,(507)874-2747,465 Northwestern Ave,Buffalo,NY,00501,tgoodwin@columbia.edu                    <-- user input
+Brody Curtis,(765)496-2636,1285 Electrical Engineering,IN,West Lafayette,47907,brodyc@purdue.edu     <-- user input
+Tom King,(765)403-8876,Greenbush St,Lafayette,IN,47908,tomk@gmail.com                                <-- user input    
+John Lee,(465)893-6684,23 Union St,Blackburg,VA,24073,lee32@vtech.edu                                <-- user input
+Bob White,(243)978-2033,,,,,bob_white@gmail.com                                                      <-- user input
+Jerry Callan,,,,PA,30894,jerry@yahoo.com                                                             <-- user input
+                                                                                                     <-- user input: just a empty line by "Enter", which means the end of initial input
+
+[MAIN MENU]                             <-- program output
+FUNCTION                        KEY
+Search Record . . . . . . . . .  1
+Insert Record . . . . . . . . .  2
+Delete Record . . . . . . . . .  3
+Review All Records . . . . . . . 4
+Quit . . . . . . . . . . . . . . 0
+Enter Choice:
+1                                       <-- user input, choose "search record"
+Search type of data:            KEY     <--program output
+Name . . . . . . . . . . . . . . 1
+Telephone. . . . . . . . . . . . 2
+Address. . . . . . . . . . . . . 3
+City . . . . . . . . . . . . . . 4
+State. . . . . . . . . . . . . . 5
+ZIP code . . . . . . . . . . . . 6
+Email. . . . . . . . . . . . . . 7
+Enter Choice:
+1                                       <-- user input
+Please input Name:                      <-- program output
+tom                                     <-- user input
+Searching the address book for tom in Name... <-- program output. Note if no matched record is found(using partial match), print "Error: No Matched Record!".
+
+Name: Tom Green
+Telephone:7654961234
+Address: 200 State Street
+City: West Lafayette
+State: IN
+Zip code: 47906
+email: tom@purdue.edu
+
+Name: Tommy Lee
+Telephone:7654960000
+Address: 201 State Street
+City: West Lafayette
+State: IN
+Zip code: 47905
+email: tom2@purdue.edu
+
+... More output ...
+                                <-- one operation is finished
+[MAIN MENU]                     <-- program output
+FUNCTION                        KEY
+Search Record . . . . . . . . .  1
+Insert Record . . . . . . . . .  2
+Delete Record . . . . . . . . .  3
+Review All Records . . . . . . . 4
+Quit . . . . . . . . . . . . . . 0
+Enter Choice:
+2                               <-- User input, choose "insert record"
+New contact name:               <-- program output
+Rachel Kim                      <-- User input
+Telephone:                      <-- program output. Note: if the name is already existed(using exact match), print "Error: Record existed!"; otherwise, get other field information as follows
+(765)405-9807                   <-- User input
+Address:                        <-- program output
+...                             <-- User input
+City :                          <-- program output
+...                             <-- User input
+State:                          <-- program output
+...                             <-- User input
+ZIP code:                       <-- program output
+...                             <-- User input
+Email:                          <-- program output
+...                             <-- User input
+Record inserted successfully    <-- program output
+                                <-- one operation is finished
+[MAIN MENU]                     <-- program output
+FUNCTION                        KEY
+Search Record . . . . . . . . .  1
+Insert Record . . . . . . . . .  2
+Delete Record . . . . . . . . .  3
+Review All Records . . . . . . . 4
+Quit . . . . . . . . . . . . . . 0
+Enter Choice:
+3                               <-- User input, choose "delete record"
+Please input Name to be deleted:                           <-- program output
+ABC                             <-- User input, input the name you want to delete. Note: delete uses exact match.
+Delete ABC successfully!        <-- program output. Note: if no matched name is found, print"Error: No matched record Found!"
+
+[MAIN MENU]                     <-- program output
+FUNCTION                        KEY
+Search Record . . . . . . . . .  1
+Insert Record . . . . . . . . .  2
+Delete Record . . . . . . . . .  3
+Review All Records . . . . . . . 4
+Quit . . . . . . . . . . . . . . 0
+Enter Choice:
+4                               <-- user input
+Review all records in the alphabetical order of names...
+
+Name: Abc Green
+Telephone:7654961234
+Address: 200 State Street
+City: West Lafayette
+State: IN
+Zip code: 47906
+email: abc@purdue.edu
+
+Name: Bcd Lee
+Telephone:7654960000
+Address: 201 State Street
+City: West Lafayette
+State: IN
+Zip code: 47905
+email: bcd@purdue.edu
+
+... More output ...
+  
+[MAIN MENU]                     <-- program output
+FUNCTION                        KEY
+Search Record . . . . . . . . .  1
+Insert Record . . . . . . . . .  2
+Delete Record . . . . . . . . .  3
+Review All Records . . . . . . . 4
+Quit . . . . . . . . . . . . . . 0
+Enter Choice:
+0                               <-- user input
+~localhost >
+

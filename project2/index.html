@@ -1,0 +1,396 @@
+
+<HTML>
+<HEAD>
+<TITLE>CS240 Project 2: DIY Address Book</TITLE>
+<META NAME="description" CONTENT="CS240 Project 2: DIY Address Book">
+<META NAME="keywords" CONTENT="proj2">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="proj2.css">
+
+</HEAD>
+
+<BODY >
+<H1 ALIGN="CENTER">CS240 Project 2: DIY Address Book</H1>
+<DIV>
+
+<P ALIGN="CENTER"><STRONG></STRONG></P>
+</DIV>
+
+<P>
+
+<H1><A NAME="SECTION00010000000000000000">
+Introduction</A>
+</H1>
+You may have become very familiar with popular commercial email
+clients, such as Outlook Express or Mozilla. Most of these supply
+powerful user-friendly address book tools to manage the long list
+of contact information. Do you want to design your own address
+book to manipulate your friend list? It's worth a try!
+
+<P>
+In this project, your task is to implement an address book search
+program that can read a comma-delimited text file. Users can
+perform keyword searching and displaying functions on the imported
+address book, for example, "Search the address book for Tom in
+Name".
+
+<P>
+
+<H1><A NAME="SECTION00020000000000000000">
+Background</A>
+</H1>
+Some address-book facility in general-purpose Email Clients, such
+as Netscape Communicator or Outlook Express, can export the
+address book to a comma or tab-delimited text file. In this
+project, we will use comma-delimited records as the initial input.
+Download the sample text file containing comma-delimited data from the following
+link to your working directory. 
+<BR>
+<P>
+
+<P>
+<BR>
+
+<A NAME="tex2html1"
+  HREF="sample.txt">Sample Input File</A>
+<P>
+<BR>
+
+<P>
+Each entry in the personal contact information record is
+ordered in the following way:
+
+<P>
+noindent <B>Name,Telephone,Address,City,State,ZIP code,Email</B>
+
+<P>
+For example: Tom Green,(765)496-1234,200 State
+Street,West Lafayette,IN,47906,tom@@purdue.edu
+
+<P>
+which means:
+
+<P>
+Name: Tom Green 
+<BR>
+Telephone:(765)496-1234 
+<BR>
+Address: 200 State Street
+<BR>
+City: West Lafayette
+<BR>
+State: IN 
+<BR>
+Zip code: 47906
+<BR>
+email:
+tom@@purdue.edu
+
+<P>
+
+<H1><A NAME="SECTION00030000000000000000">
+Project Details</A>
+</H1>
+Your program needs to perform the following:
+
+<H2><A NAME="SECTION00031000000000000000">
+Reading and Parsing the comma-delimited data</A>
+</H2>
+
+<P>
+You program should read the comma-delimited records from STDIN and
+build up the initial database. An empty line indicates the end of initial input.
+
+<P>
+We will always test your program by feeding it a comma-delimited file containing  an initial set of addresses using input redirection,
+i.e., <TT>AddrBook &lt; address.txt</TT>.You can assume that the input file always has a valid format and
+contains at least one entry and <B>at most</B> 100 entries. You
+also have to allow for the possibility that a record may contain
+some empty fields. For example, in record
+
+<P>
+"Tom Green,(765)496-1234,,,IN,47906,tom@purdue.edu",
+
+<P>
+the Address and City fields are empty. The only
+exception is the Name field, which functions as the primary key,
+and hence cannot be empty. Thus, you can assume that the Name
+field is always unique and never empty, while other fields can be repetitive or empty.
+
+<P>
+
+ <B>Hint: You will probably
+need to interpret and store the data in multiple arrays, with each
+array containing one field.</B>
+
+<P>
+
+<H2><A NAME="SECTION00032000000000000000">
+User input</A>
+</H2>
+You have to remove extra spaces from user input and store each field
+in the standard form stated as follows: 
+<BR>
+<P>
+We define a word with no
+space as a unit of a field. For example, the Address field "123
+Nimitz Drive" has three units: "123","Nimitz" and "Drive". There
+should be no spaces before the first unit or after the last unit.
+And there is one and only one space to separate two units. For
+example, if user inputs the Name field as "&nbsp;&nbsp;&nbsp;Tom&nbsp;&nbsp;&nbsp;&nbsp;Green&nbsp;&nbsp;&nbsp;", you
+have to change it to "Tom Green" and store it in your own data
+structures.
+
+<P>
+
+<H2><A NAME="SECTION00033000000000000000">
+Functionality</A>
+</H2>
+Your project interface must include the following functionality:
+<BR>
+<DIV ALIGN="CENTER">
+<TABLE CELLPADDING=3 BORDER="1">
+<TR><TD ALIGN="LEFT">Search Record</TD>
+<TD ALIGN="LEFT">Search for a record based on the user-specified field</TD>
+</TR>
+<TR><TD ALIGN="LEFT">Insert Record</TD>
+<TD ALIGN="LEFT">Insert a record in the address book</TD>
+</TR>
+<TR><TD ALIGN="LEFT">Delete Record</TD>
+<TD ALIGN="LEFT">Delete a record in the address book</TD>
+</TR>
+<TR><TD ALIGN="LEFT">Review all records</TD>
+<TD ALIGN="LEFT">Print out all the records in the
+alphabetical order of names</TD>
+</TR>
+<TR><TD ALIGN="LEFT">Quit</TD>
+<TD ALIGN="LEFT">Exit the program</TD>
+</TR>
+</TABLE>
+</DIV>
+
+<P>
+
+<H3><A NAME="SECTION00033100000000000000">
+Search Record</A>
+</H3>
+
+<OL>
+<LI><I>Keywords for searching records should be  case insensitive</I>.
+The following names should all match when you search for Tom Green:
+
+<P>
+
+<P>
+<BR>
+Tom Green 
+<BR>
+Tom green 
+<BR>
+tom green
+
+<P>
+<BR>
+
+</LI>
+<LI><I>Queries should yield partial matches</I>. That is,
+you will locate records with the specified field containing the
+substrings, separated by white spaces, submitted by users. For
+example, if the search is for "Tom Green" in the NAME field, your
+program should print out all records for which the NAME field
+contains Tom and Green, such as "Tom Greenwood", "Tommy Greenland"
+and "Tommy Green".
+</LI>
+</OL>
+
+<P>
+
+<H3><A NAME="SECTION00033200000000000000">
+Insert/Delete Record</A>
+</H3>
+Record insertion is performed based on the Name field. Only if the
+specified Name <I>does not already exist</I> in the database will
+the other fields be collected and inserted. Record deletion is
+based on an <B>exact match</B> of a given name. For example, if
+the given name is "Tom", only records with <I>exact</I> name "Tom"
+can be deleted, while "Tom Green" or "Tommy Lee" are not exact
+matches and cannot be deleted. As stated earlier, keywords for
+searching records should be <I>case insensitive</I>.
+
+<P>
+<B>Hint: You may use another integer/boolean array
+to flag whether each entry in the address book is valid or
+invalid. In this way, deleting a record becomes simple: you only
+need to reset a value to 0.</B>
+
+<P>
+
+<H3><A NAME="SECTION00033300000000000000">
+Review all records</A>
+</H3>
+The review-all command will enable the grader to ensure if the
+insertion and deletion of records is being done correctly. Because
+the output should be in alphabetical order of Name(also <I>case insensitive</I>), you will need
+to write a <TT>sort</TT> function. In this project, you are allowed
+to use any sorting algorithm. For example, the
+<A NAME="tex2html2"
+  HREF="http://en.wikipedia.org/wiki/Bubble_sort">Bubble
+sort</A>
+is a simple
+sorting algorithm.
+
+<P>
+
+<H3><A NAME="SECTION00033400000000000000">
+Quit</A>
+</H3>
+ A session will end if the menu choice corresponding to <TT>quit</TT>
+is entered, or the key sequence Ctrl-D is entered.
+
+<P>
+
+<H3><A NAME="SECTION00033500000000000000">
+Interface</A>
+</H3>
+After your program reads in the initial database, it should
+present the menu on the console. The user can enter his/her input
+to specify which of the program functions is to be performed.
+Please look at the sample output:
+<A NAME="tex2html3"
+  HREF="output.txt">output</A>
+for details.
+
+<P>
+
+<H1><A NAME="SECTION00040000000000000000">
+
+
+Note and Restrictions</A>
+</H1>
+
+
+<OL>
+
+<LI><P>In this project, we would like you to use a better program structure than before. In previous labs/projects, you only needed to write one .c file. But sometimes you may need multiple .c and/or .h files to organize your program more efficiently. For example, in this project, you are not allowed to use any library function in <B>string.h</B>. That is to say, you have to write your own string functions to compare strings, copy strings and do other string manipulation. You can write all the string functions in a source file named mystring.c. And if you want to call those functions in your main .c file, which implements, for example, the user interface, you also need to write a corresponding .h file and include it in your main .c file. In addition, you can also use static/extern to let your functions be used locally/globally. 
+</P></LI>
+<LI>You are only allowed to use <TT>getchar</TT> or <TT>gets</TT>
+to read from STDIN and <TT>printf</TT> to output to STDOUT. Any
+other use of another library function will result in an automatic
+zero. No exceptions.
+
+<P>
+</LI> 
+
+<P>
+ 
+<LI>You can define limit constants as follows:
+<BR>
+<P>
+#define MAX_CONTACT 100 // maximum number of contacts 
+<BR>#define MAX_FIELDLEN 50 // maximum length of a field string 
+<BR>#define MAX_LINELEN 250 // maimum length of a user-input line 
+<BR>
+</P>
+<LI><P>
+You can use #ifdef DEBUG to print out more information to help you debug your program. 
+</P>
+</LI>
+<LI>If a project fails to compile based either on syntax errors or Makefile errors (omission constitutes error), your project will receive an automatic zero.
+</LI>
+</OL>
+
+<p><br>
+  </p>
+<h1><a name="SECTION00050000000000000000">Turnin</a> </h1>
+<p>When you are satisfied that your program works correctly ( or you run out of 
+time ), please do the following. </p>
+<p>  </p>
+<ol>
+	<li>Create a directory named <tt>project02</tt> 
+	<p>  </li>
+	<li>Copy all program files ( <tt>*.c and *.h</tt> ) and your <tt>Makefile</tt> 
+	to the directory created in step 1. 
+	<p>  </li>
+	<li>Goto the parent directory of <tt>project02</tt> and type the following 
+	command into the terminal: 
+	<p>  </p>
+	<blockquote>
+		<tt>turnin -c cs240=XXXX -p project02 project02</tt> 
+	</blockquote>
+	<p>where <tt>XXXX</tt> represents your lab section number (<b>number only!</b>).
+	</p>
+	<p>The turnin section should be as follows: </p>
+	<p>  </p>
+	<table border="1" cellPadding="3" id="table1">
+		<tr>
+			<td align="left">Section</td>
+			<td align="left">Time</td>
+			<td align="left">TA</td>
+		</tr>
+		<tr>
+			<td align="left">0101</td>
+			<td align="left">Tu 15:30-17:20</td>
+			<td align="left">Youhan</td>
+		</tr>
+		<tr>
+			<td align="left">0201</td>
+			<td align="left">Th 15:30-17:20</td>
+			<td align="left">Youhan</td>
+		</tr>
+		<tr>
+			<td align="left">0301</td>
+			<td align="left">F 15:30-17:20</td>
+			<td align="left">Suli</td>
+		</tr>
+	</table>
+	<p>Make sure <tt>turnin</tt> reports that your project was submitted for 
+	grading. </p>
+	<p>  </li>
+	<li>Submit often to make sure that you did not try to submit after turnin 
+	has been turned off. 
+	<p>  </li>
+	<li>You can check the files you have submitted by running the following 
+	command: 
+
+	<blockquote>
+		<tt>turnin -c cs240=XXXX -v</tt> 
+	</blockquote>
+	where <tt>XXXX</tt> represents your lab section number (<b>number only!</b>). 
+	<p>  </li>
+</ol>
+<p>  </p>
+
+<P>
+
+<H1><A NAME="SECTION00070000000000000000">
+
+Grading</A>
+</H1>
+
+<P>
+We will use the following grading policy:
+
+<P>
+<DIV ALIGN="CENTER">
+<TABLE CELLPADDING=3 BORDER="1">
+<TR><TD ALIGN="LEFT"><TT>Makefile</TT> is submitted  and it can be used to
+build your program correctly</TD>
+<TD ALIGN="RIGHT">10</TD>
+</TR>
+<TR><TD ALIGN="LEFT">Program passes 10 test cases (7 points for each)</TD>
+<TD ALIGN="RIGHT">70</TD>
+</TR>
+<TR><TD ALIGN="LEFT">Program structure is designed properly (not only one .c file, 10 points) and static/extern indentifiers are used correctly (5/5 points) </TD> 
+<TD ALIGN="RIGHT">20</TD>
+</TR>
+</TABLE>
+</DIV>
+
+<P>
+
+<H1><A NAME="SECTION00060000000000000000">
